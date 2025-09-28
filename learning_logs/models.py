@@ -1,10 +1,12 @@
 from django.db import models # models is module. model is just a class.
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Topic(models.Model):
   """A topic the user is learning about."""
   text = models.CharField(max_length=2000)
   date_added = models.DateTimeField(auto_now_add=True)
+  owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
   def __str__(self):
     """Return a string represntation of the model."""
@@ -13,12 +15,12 @@ class Topic(models.Model):
 class Entry(models.Model):
   """ Something specific learned about a topic"""
   topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-  text = models.TextField(Topic)
+  text = models.TextField()
   date_added = models.DateTimeField(auto_now_add=True)
 
   class Meta:
     verbose_name_plural = 'entries'
 
-    def _str_(self):
-      """Return a string representation of the model."""
-      return self.text[:50] + "..."
+  def __str__(self):
+    """Return a string representation of the model."""
+    return self.text[:50] + "..."
