@@ -13,6 +13,11 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 # My settings
 LOGIN_URL = '/users/login/'
 
+# settings for django-bootstrap4
+BOOTSTRAP4 = {
+  'include_jquery': 'full',
+}
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -40,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # third party apps
+    'bootstrap4',
     # my apps
     'learning_logs',
     'users'
@@ -64,6 +71,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
